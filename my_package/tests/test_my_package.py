@@ -16,6 +16,11 @@ class TestMy_package(unittest.TestCase):
 
     def setUp(self):
         """Set up test fixtures, if any."""
+        self.hello_message = "Hello, PyOhio!"
+
+    def test_prints_hello_my_package(self):
+        output = my_package.hello()
+        assert (output == self.hello_message)
 
     def tearDown(self):
         """Tear down test fixtures, if any."""

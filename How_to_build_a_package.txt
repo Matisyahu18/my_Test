@@ -53,6 +53,7 @@ USE setuptools
         - Upload things to PyPI in a secure manner
     c.) pip install tox
         - Test Runner
+    d.) pip install flake8
 2. Create Directory Structure (We are Lazy ;))
     a. pip install cookiecutter
         - Templates
@@ -80,6 +81,7 @@ USE setuptools
     d. git commit -m 'inital commit'
 6. Add your code
     a. pyohio2015/cli.py (Create)
+    d. my_package.py ->
     b. "from __future__ import XYZ" - Make it python 2 / 3 compatible (?), allowing building universal wheel
     c. from __future__ import print_function
 
@@ -111,6 +113,8 @@ USE setuptools
     b. Console: cd D:\gammaGUI\gammagui
     c. D:\gammaGUI\venv\Scripts\tox #je nach packet enviroment / im falle von inheritace
     d. C:\Users\Stefan\Anaconda2\Scripts\tox
+
+    D:\my_Test\venv\Scripts\tox
 
 
 9. commit
