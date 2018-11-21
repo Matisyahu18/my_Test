@@ -1,0 +1,174 @@
+# Python3 Intro
+https://www.youtube.com/watch?v=M26Y4H_-vSo&list=PLUbFnGajtZlX33bIERCOsdp2eCuA5SsgZ
+
+# Packaging
+https://www.youtube.com/watch?v=4fzAMdLKC5k
+PyPA (Python Packaging Authority)
+PyPUG (Python Packaging Users Guide)
+
+## Package Componentes 8:37
+- Data
+-- Datafile
+- Discription.rst
+- MANIFEST.in
+- README.rst
+- sample (my Code)
+-- __init__.py
+-- package_data.dat
+- setup.cfg
+- setup.py
+- tests
+-- __init__.py
+-- test_simple.py
+
+##setup.py 11:04
+USE setuptools
+## Make a package 20:18
+- requirements
+    - pip install wheel
+    - pip install twine
+    - pip install tox
+- Create folder Structure (we are lazy ;)
+    - pip install cookiecutter (templates)
+- Make virtualenv
+    - mkvirtualenv pyohio2015 (create virtual Env - maybe can done with pycharm)
+- __future__ import (python 2 / 3 compatible
+- Travis CI (continuus integration
+    - https://travis-ci.org/ (login github)
+- Read the Docs
+- PyPI (Create Account)
+    - Save Settings
+
+######################################################
+######################################################
+# How to Create a Package (Step by Step)
+0. Fist Create Virtenv
+    a.) with pycharm
+1. Install Requirements
+    - navigate to /venv in terminal (pyhcharm)
+    - cd venv/Scripts
+    a.) pip install wheel
+        - Allow to create wheel Format
+    b.) pip install twine
+        - Upload things to PyPI in a secure manner
+    c.) pip install tox
+        - Test Runner
+2. Create Directory Structure (We are Lazy ;))
+    a. pip install cookiecutter
+        - Templates
+        - https://cookiecutter-pypackage.readthedocs.io/en/latest/
+3. Make virtualenv (NOT NESSESSARY?!)
+    a.) Pycharm (?) or virtualenvwrapper
+        - mkvirtualenv pyohio2015 /my_Test
+4. Run Cookiecutter
+    a.dave@xps:$ cookiecutter repoURL
+    b. in venv/Scripts : cookiecutter https://github.com/Matisyahu18/mypackage.git
+    c. Working:
+        - Python console
+        -   from cookiecutter.main import cookiecutter
+
+            # Create project from the cookiecutter-pypackage/ template
+            cookiecutter('cookiecutter-pypackage/')
+
+            # Create project from the cookiecutter-pypackage.git repo template
+            cookiecutter('https://github.com/audreyr/cookiecutter-pypackage.git') # Used that
+
+5. Git init in repro ( Make Source Control) (PyCharm)
+    a. cd pyohio2015
+    b. git init
+    c. git add .
+    d. git commit -m 'inital commit'
+6. Add your code
+    a. pyohio2015/cli.py (Create)
+    b. "from __future__ import XYZ" - Make it python 2 / 3 compatible (?), allowing building universal wheel
+    c. from __future__ import print_function
+
+        def hello():
+            """ Returns a Hello, World! """
+            return ("Hello, PyOhio!")
+
+        def say_hello():
+            """ Prints Hello, World message """
+            print(hello())
+
+7. Add tests
+    a. tests/test_pyohio2015.py
+    b. import pyphio2015
+    c. test Framework:
+    class TestMy_test_package(unittest.TestCase):
+    """Tests for `my_test_package` package."""
+
+    def setUp(self):
+        """Set up test fixtures, if any."""
+        self.hello_message = "Hello, PyOhio!"
+
+    def test_prints_hello_pyohio(self):
+        output = pyohio2015.hello()
+        assert (output == self.hello_message)
+
+8. Run Tests
+    a. tox (commando) (Created by cookiecutter) - Running tests for all python versions
+    b. Console: cd D:\gammaGUI\gammagui
+    c. D:\gammaGUI\venv\Scripts\tox #je nach packet enviroment / im falle von inheritace
+    d. C:\Users\Stefan\Anaconda2\Scripts\tox
+
+
+9. commit
+    a. git add .
+    b. git commit -m "add functionality"
+10. Set up Online Services
+    a. github (from beginning)
+    b. Travis CI
+        - https://travis-ci.org / https://travis-ci.com (besser?!)
+        - Login with github
+        - Running Tests in Repro
+        - Git Push
+            console mypackage
+            git remote add origin https://github.com/Matisyahu18/mypackage.git
+            git push -u origin master
+        - Back to Travis CI
+        - Watch at Test Update (NOT WORKING)
+        - No Local Testing Needed with different Python Versions
+    c. Read the docs
+        - https://readthedocs.org/
+        - Login with github
+        - Cookiecutter produced the Documentation Skelleton
+    d. PyPI
+        - Create Account
+        - Save PyPI Settings
+            -$HOME/.pypirc
+            - Passwort can be blank - Ask before an upload
+11. Create distribution files
+    a. /setup.py sdist (Make source distribution, is being put into a build directory
+    b. /setup.py bdist_wheel (Builds universial wheel)
+    c. sign distribution files
+        - gpg - -detach-sign -a (optional - insurance that you are really the author)
+    d. Register Package on PyPI
+        - Upload PKG File Created by sdist command
+        - pyohio2015.egg-info/PKG-INFO
+        - Upload by twine command
+            - twine upload dist/*
+12. Develope Mode
+    a. Install Package into virtual env
+        - ./setup.py develop
+        - pip install -e.
+13. Make Changes to Your Code
+14. Update Version
+    a. in setup.py and [package]/__init__.py
+15. Commit, tag, & push (New Version to Git)
+    a. git commit -m "another new functionality"
+    b. git push origin master
+    c. git tag v.0.2.0
+    d. git push origin - -tags
+    e. kicks of a new Travis Build
+    f. build,sign and upload ( use sdist, bdistwheel, twine)
+    bcd. A Pain for versioning - Use Versioneer (python-versioneer)
+
+
+
+
+
+
+
+
+
